@@ -1,0 +1,58 @@
+<!-- 네비게이션 바 -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark"
+     th:fragment="navbarFragment">
+  <div class="container-fluid">
+    <!-- 왼쪽 로고/이름 -->
+    <a class="navbar-brand" th:href="@{/item/list}">AniShop</a>
+
+    <!-- 모바일 토글 버튼 -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar" aria-controls="mainNavbar"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- 실제 메뉴 영역 -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <!-- 일반 메뉴 -->
+        <li class="nav-item">
+          <a class="nav-link" href="#">메뉴1</a>
+        </li>
+
+        <!-- 드롭다운 메뉴 -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="itemDropdown"
+             role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            아이템 관리
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="itemDropdown">
+            <li><a class="dropdown-menu-item dropdown-item" href="/item/list">상품 목록</a></li>
+            <li><a class="dropdown-menu-item dropdown-item" href="/item/create">상품 등록</a></li>
+          </ul>
+        </li>
+
+        <!-- 또 다른 드롭다운 예시 -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown"
+             role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            회원 관리
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="userDropdown">
+            <li><a class="dropdown-item" href="#">회원 목록</a></li>
+            <li><a class="dropdown-item" href="#">회원 등록</a></li>
+          </ul>
+        </li>
+
+      </ul>
+
+      <!-- 오른쪽 영역 (로그인/로그아웃 등) -->
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">로그인</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

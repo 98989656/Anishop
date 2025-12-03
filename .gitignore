@@ -1,0 +1,19 @@
+/build/
+.gradle/
+**/application.properties
+**/application.yml
+/out/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IntelliJ
+/.idea
+*.iml
+
+# Java
+*.class
+
+# Log
+*.log

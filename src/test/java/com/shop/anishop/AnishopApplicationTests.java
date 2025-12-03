@@ -23,25 +23,18 @@ class AnishopApplicationTests {
 
 	@Test
 	void createdTest1() {
-		ItemEntity item = new ItemEntity();
-		item.setItemName("피규어1");
-		item.setItemDetail("첫 등록상품 피규어1");
-		item.setPrice(10000);
-		item.setStockNumber(10);
-		item.setUpdateTime(LocalDateTime.now());
-		item.setRegTime(LocalDateTime.now());
 
-		ItemEntity savedItem = itemRepository.save(item);
+		for (int i = 0; i <= 100; i++){
+			ItemEntity item = new ItemEntity();
+			item.setItemName("피규어 " + i);
+			item.setItemDetail("첫 등록상품 피규어" + i);
+			item.setPrice(10000);
+			item.setStockNumber(10);
+			item.setUpdateTime(LocalDateTime.now());
+			item.setRegTime(LocalDateTime.now());
 
-
-		UserEntity user = new UserEntity();
-		user.setName("테스트인원1");
-		user.setPassword("12345567788");
-		user.setEmail("perudeim@naver.com");
-		user.setPhoneNumber("010-6546-4444");
-		user.setUserGender(UserGender.MALE);
-
-		UserEntity savedUser = userRepository.save(user);
+			ItemEntity savedItem = itemRepository.save(item);
+		}
 	}
 
 }

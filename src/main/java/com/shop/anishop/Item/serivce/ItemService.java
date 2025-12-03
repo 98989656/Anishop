@@ -1,9 +1,12 @@
 package com.shop.anishop.Item.serivce;
 
+import com.shop.anishop.Item.dto.ItemDto;
 import com.shop.anishop.Item.entity.ItemEntity;
 import com.shop.anishop.Item.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -44,6 +47,10 @@ public class ItemService {
         i.setItemDetail(itemDetail);
         i.setUpdateTime(LocalDateTime.now());
         this.itemRepository.save(i);
+    }
+
+    public void delete(ItemEntity item) {
+        this.itemRepository.delete(item);
     }
 
 

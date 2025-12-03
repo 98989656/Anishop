@@ -72,6 +72,16 @@ public class ItemController {
         }
         ItemEntity item = this.itemService.getItem(id);
         this.itemService.modify(item, itemDto.getItemName(), itemDto.getPrice(), itemDto.getStockNumber(), itemDto.getItemDetail());
-        return String.format("redirect:/item/detail/%s" , id);
+        return String.format("redirect:/item/detail/%s", id);
     }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Long id) {
+        ItemEntity item = this.itemService.getItem(id);
+
+        this.itemService.delete(item);
+        return "redirect:/item/list";
+    }
+
+
 }

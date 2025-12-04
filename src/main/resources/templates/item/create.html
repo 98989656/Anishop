@@ -12,7 +12,7 @@
 
     <h2 class="mb-4">상품 등록</h2>
 
-    <form th:action="@{/item/create}" th:object="${itemDto}" method="post">
+    <form th:action="@{/item/create}" th:object="${itemDto}" method="post" enctype="multipart/form-data">
         <div th:replace="~{form_errors :: formErrorsFragment}"></div>
 
         <table class="table table-bordered">
@@ -55,6 +55,13 @@
                               rows="4"
                               th:field="*{itemDetail}"
                               placeholder="상품 설명을 입력하세요"></textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="table-light">파일 업로드</th>
+                <td>
+                    <input type="file" class="form-control-file" name="files" multiple>
                 </td>
             </tr>
 

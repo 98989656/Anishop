@@ -2,17 +2,15 @@ package com.shop.anishop.Item.controller;
 
 import com.shop.anishop.Item.dto.ItemDto;
 import com.shop.anishop.Item.entity.ItemEntity;
-import com.shop.anishop.Item.repository.ItemRepository;
-import com.shop.anishop.Item.serivce.ItemService;
+import com.shop.anishop.Item.service.ItemImgService;
+import com.shop.anishop.Item.service.ItemService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -22,6 +20,7 @@ import java.util.List;
 public class ItemController {
 
     private final ItemService itemService;
+    private final ItemImgService itemImgService;
 
     @GetMapping("/list")
     public String list(Model model) {
@@ -44,11 +43,14 @@ public class ItemController {
     }
 
     @PostMapping("/create")
-    public String create(@Valid ItemDto itemDto, BindingResult bindingResult) {
+    public String create(@Valid ItemDto itemDto, BindingResult bindingResult,
+                        @RequestParam("files")List<MultipartFile> file) throws Exception{
         if (bindingResult.hasErrors()) {
             return "item/create";
         }
-        this.itemService.create(itemDto.getItemName(), itemDto.getPrice(), itemDto.getStockNumber(), itemDto.getItemDetail());
+        this.itemService.create(itemDto.getItemName(), itemDto.getPrice(), itemDto.getStockNumber(), itemDto.getItemDetail(),
+                file);
+
         return "redirect:/item/list";
     }
 
@@ -66,12 +68,14 @@ public class ItemController {
     }
 
     @PostMapping("/modify/{id}")
-    public String modify(@Valid ItemDto itemDto, BindingResult bindingResult, @PathVariable("id") Long id) {
+    public String modify(@Valid ItemDto itemDto, BindingResult bindingResult, @PathVariable("id") Long id
+            , MultipartFile file) throws Exception {
         if (bindingResult.hasErrors()) {
             return "item/modify";
         }
         ItemEntity item = this.itemService.getItem(id);
-        this.itemService.modify(item, itemDto.getItemName(), itemDto.getPrice(), itemDto.getStockNumber(), itemDto.getItemDetail());
+        this.itemService.modify(item, itemDto.getItemName(), itemDto.getPrice(), itemDto.getStockNumber(), itemDto.getItemDetail(),
+                file);
         return String.format("redirect:/item/detail/%s", id);
     }
 

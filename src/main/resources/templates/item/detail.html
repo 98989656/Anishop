@@ -28,6 +28,23 @@
       <th>상품 설명</th>
       <td th:text="${item.itemDetail}">설명</td>
     </tr>
+
+    <tr>
+      <th>상품 이미지</th>
+      <td>
+        <div th:if="${#lists.isEmpty(item.images)}">
+          등록된 이미지가 없습니다.
+        </div>
+
+        <div class="d-flex flex-wrap gap-2"
+             th:if="${!#lists.isEmpty(item.images)}">
+          <img th:each="img : ${item.images}"
+               th:src="${img.imagePath}"
+               class="img-thumbnail me-2 mb-2"
+               style="max-width: 200px; height: auto;"
+               alt="상품 이미지">
+        </div>
+
   </table>
 
 <br>

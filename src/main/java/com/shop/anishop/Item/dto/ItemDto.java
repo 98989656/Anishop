@@ -1,11 +1,17 @@
 package com.shop.anishop.Item.dto;
 
+import com.shop.anishop.Item.entity.ItemImg;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,7 +33,6 @@ public class ItemDto {
     @NotEmpty(message = "상품 설명은 필수 입력 값입니다.")
     private String itemDetail;
 
-
-
-
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemImg> image = new ArrayList<>();
 }
